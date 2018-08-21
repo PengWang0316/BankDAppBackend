@@ -1,0 +1,3 @@
+module.exports = {
+  DEFUALT_ACCOUNT: '0x6305d5887e707b1BbBC22fd2ce15466e66751cE7'
+};
