@@ -12,7 +12,7 @@ const putWithdraw = require('./functions/PutWithdraw');
 const postAddUser = require('./functions/PostAddUser');
 
 /* Fetching the user's balance */
-normalRouter.get('/fetchBalance', getFetchBalance);
+normalRouter.get('/fetchBalance/:id', getFetchBalance);
 
 /* Depositing some money */
 normalRouter.get('/deposit', putDeposit);

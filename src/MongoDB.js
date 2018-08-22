@@ -99,8 +99,8 @@ exports.fetchAllAccount = () => promiseFindResult(db => db.collection(COLLECTION
 
 /* Adding a new user */
 exports.addUser = user => new Promise(
-  (resolve, reject) => connectToDb(db => db.collection(COLLECTION_USERS).insert(user)
-    .then((err, result) => {
+  (resolve, reject) => connectToDb(db => db.collection(COLLECTION_USERS).insertOne(user)
+    .then((result, err) => {
       if (err) reject(err);
       resolve(result.ops[0]);
     }))
