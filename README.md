@@ -4,6 +4,8 @@ This repository is the back-end code for the bank DApp.
 
 NodeJS will receive the front-end call and then save and retrieve data from the Ehtereum block chain platform via a smart contract.
 
+[![Build Status](https://travis-ci.org/PengWang0316/BankDAppBackend.svg?branch=master)](https://travis-ci.org/PengWang0316/BankDAppBackend) [![Coverage Status](https://coveralls.io/repos/github/PengWang0316/BankDAppBackend/badge.svg?branch=master)](https://coveralls.io/github/PengWang0316/BankDAppBackend?branch=master)
+
 ## File Structure
 
 - src has all NodeJS file

@@ -7,7 +7,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "testCoverage": "jest --coverage --runInBand",
+    "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls"
   },
   "keywords": [
     "Truffle",
@@ -41,6 +43,7 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "coveralls": "^3.0.2",
     "eslint": "^5.4.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",

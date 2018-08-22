@@ -2,3 +2,4 @@ node_modules
 .env
 information.txt
 coverage
+.coveralls.yml
