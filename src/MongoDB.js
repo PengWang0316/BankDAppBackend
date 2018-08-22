@@ -6,7 +6,7 @@ const winston = require('winston');
 require('dotenv').config();
 // Loading .env to process.env
 const DB_URL = process.env.DB_HOST;
-const COLLECTION_USERS = 'users';
+const COLLECTION_USERS = 'Users';
 
 const DB_NAME = process.env.DB_NAME;
 
@@ -24,30 +24,38 @@ const logger = winston.createLogger({
 new configuration wholesale.
   * When under the production mode, log to a file.
 */
-if (process.env.NODE_ENV === 'production')
-  logger.configure({
+if (process.env.NODE_ENV === 'production') logger.configure(
+  {
     level: 'error',
     transports: [
       new (winston.transports.File)({ filename: 'error.log' })
     ]
-  });
+  }
+);
 
 /*
 * Use to execute the database
 * Other function can call it to get the connection.
 * Pass a function that contains the executed code.
 */
-const connectToDb = executeFunction => {
-  MongoClient.connect(DB_URL, (err, client) => {
-    if (err)
-      logger.error('Unable to connect to the mongoDB server. Error:', err);
-    else
-      // console.log("Connection of MongonDB was established.");
-      // Run given mehtod
-      executeFunction(client.db(DB_NAME));
+// const connectToDb = executeFunction => {
+//   MongoClient.connect(DB_URL, (err, client) => {
+//     if (err) logger.error('Unable to connect to the mongoDB server. Error:', err);
+//     else
+//             // Run given mehtod
+//       executeFunction(client.db(DB_NAME));
 
+//     client.close();
+//   });
+// };
+const connectToDb = async executeFunction => {
+  try {
+    const client = await MongoClient.connect(DB_URL, { useNewUrlParser: true });
+    executeFunction(client.db(DB_NAME));
     client.close();
-  });
+  } catch (e) {
+    logger.error('Unable to connect to the mongoDB server. Error:', e);
+  }
 };
 
 /* Using Promise to wrap connection and toArray */
@@ -87,4 +95,4 @@ const promiseReturnResult = callback => new Promise((resolve, reject) => {
 /* Start Database functions */
 
 /* Fetch all acount information */
-exports.fetchAllAcount = () => promiseFindResult(db => db.collection(COLLECTION_USERS).find({}));
+exports.fetchAllAccount = () => promiseFindResult(db => db.collection(COLLECTION_USERS).find({}));
