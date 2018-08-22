@@ -96,3 +96,12 @@ const promiseReturnResult = callback => new Promise((resolve, reject) => {
 
 /* Fetch all acount information */
 exports.fetchAllAccount = () => promiseFindResult(db => db.collection(COLLECTION_USERS).find({}));
+
+/* Adding a new user */
+exports.addUser = user => new Promise(
+  (resolve, reject) => connectToDb(db => db.collection(COLLECTION_USERS).insert(user)
+    .then((err, result) => {
+      if (err) reject(err);
+      resolve(result.ops[0]);
+    }))
+);

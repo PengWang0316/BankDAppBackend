@@ -5,13 +5,11 @@ require('dotenv').config(); // Loading .env to process.env
 
 // Functions import
 const getFetchAllAccount = require('./functions/GetFetchAllAccount');
-const getAddUser = require('./functions/GetAddUser');
 const getFetchBalance = require('./functions/GetFetchBalance');
 const putDeposit = require('./functions/PutDeposit');
 const putWithdraw = require('./functions/PutWithdraw');
 
-/* Adding a new user */
-normalRouter.get('/addUser', getAddUser);
+const postAddUser = require('./functions/PostAddUser');
 
 /* Fetching the user's balance */
 normalRouter.get('/fetchBalance', getFetchBalance);
@@ -24,5 +22,8 @@ normalRouter.get('/withdraw', putWithdraw);
 
 /* Fetching all account number */
 normalRouter.get('/fetchAllAccount', getFetchAllAccount);
+
+/* Adding a new user */
+normalRouter.post('/addUser', postAddUser);
 
 module.exports = normalRouter;
