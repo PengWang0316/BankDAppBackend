@@ -14,14 +14,14 @@ const postAddUser = require('./functions/PostAddUser');
 /* Fetching the user's balance */
 normalRouter.get('/fetchBalance/:id', getFetchBalance);
 
-/* Depositing some money */
-normalRouter.get('/deposit', putDeposit);
-
-/* Withdrawing some money */
-normalRouter.get('/withdraw', putWithdraw);
-
 /* Fetching all account number */
 normalRouter.get('/fetchAllAccount', getFetchAllAccount);
+
+/* Depositing some money */
+normalRouter.put('/deposit', putDeposit);
+
+/* Withdrawing some money */
+normalRouter.put('/withdraw', putWithdraw);
 
 /* Adding a new user */
 normalRouter.post('/addUser', postAddUser);
