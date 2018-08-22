@@ -11,12 +11,14 @@ describe('PostAddUser', () => {
     const BlockChainHelper = require('../../src/utils/BlockChainHelper');
 
     const req = { body: { firstName: 'firstName', lastName: 'lastName', initialAmount: 1000 } };
-    const res = { end: jest.fn() };
+    const res = { end: jest.fn(), json: jest.fn() };
 
     await postAddUser(req, res);
     expect(MongoDB.addUser).toHaveBeenCalledTimes(1);
     expect(MongoDB.addUser).toHaveBeenLastCalledWith({ firstName: 'firstName', lastName: 'lastName' });
-    expect(res.end).toHaveBeenCalledTimes(1);
+    expect(res.json).toHaveBeenCalledTimes(1);
+    expect(res.json).toHaveBeenLastCalledWith('id');
+    expect(res.end).not.toHaveBeenCalled();
     expect(BlockChainHelper.addUser).toHaveBeenCalledTimes(1);
     expect(BlockChainHelper.addUser).toHaveBeenLastCalledWith('id', req.body.initialAmount);
     expect(Logger.error).not.toHaveBeenCalled();
@@ -29,12 +31,13 @@ describe('PostAddUser', () => {
     const BlockChainHelper = require('../../src/utils/BlockChainHelper');
 
     const req = { body: { firstName: 'firstName', lastName: 'lastName', initialAmount: 1000 } };
-    const res = { end: jest.fn() };
+    const res = { end: jest.fn(), json: jest.fn() };
 
     await postAddUser(req, res);
     expect(MongoDB.addUser).toHaveBeenCalledTimes(2);
     expect(MongoDB.addUser).toHaveBeenLastCalledWith({ firstName: 'firstName', lastName: 'lastName' });
     expect(res.end).toHaveBeenCalledTimes(1);
+    expect(res.json).not.toHaveBeenCalled();
     expect(BlockChainHelper.addUser).toHaveBeenCalledTimes(1);
     expect(Logger.error).toHaveBeenCalledTimes(1);
   });

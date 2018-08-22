@@ -6,7 +6,7 @@ module.exports = (req, res) => MongoDB.addUser({
   firstName: req.body.firstName, lastName: req.body.lastName
 }).then(id => {
   BlockChainHelper.addUser(id, req.body.initialAmount);
-  res.end();
+  res.json(id);
 }).catch(err => {
   Logger.error('/addUser', err);
   res.end();
