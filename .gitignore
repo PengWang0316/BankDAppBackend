@@ -1,3 +1,4 @@
 node_modules
 .env
 information.txt
+coverage
