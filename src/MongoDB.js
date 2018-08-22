@@ -87,5 +87,4 @@ const promiseReturnResult = callback => new Promise((resolve, reject) => {
 /* Start Database functions */
 
 /* Fetch all acount information */
-exports.fetchAllAcount = () => promiseFindResult(db =>
-  db.collection(COLLECTION_USERS).find({}));
+exports.fetchAllAcount = () => promiseFindResult(db => db.collection(COLLECTION_USERS).find({}));
